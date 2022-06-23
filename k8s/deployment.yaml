@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pneumonieapp
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: pneumonieclassifier
+  template:
+    metadata:
+      labels:
+        app: pneumonieclassifier
+    spec:
+      containers:
+      - name: cv-app
+        image: gcr.io/thorerc-app-2/streamlit_app:v1
+        ports:
+        - containerPort: 8501
